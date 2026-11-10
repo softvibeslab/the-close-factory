@@ -1,0 +1,4 @@
+node_modules/
+# data/ se regenera en memoria al levantar serve.mjs
+data/
+*.log

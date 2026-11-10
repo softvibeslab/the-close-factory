@@ -1,0 +1,62 @@
+{
+  "name": "Close Factory · Cerebro",
+  "port": 4647,
+  "sources": [
+    {
+      "id": "estrategia",
+      "label": "Estrategia y análisis",
+      "paths": [
+        "README.md",
+        "docs/analisis.md",
+        "docs/inventario-previo.md",
+        "docs/plan-rediseno.md"
+      ],
+      "color": "#C6F432",
+      "staleDays": null,
+      "type": "markdown",
+      "short": "Estrategia y análisis",
+      "blurb": "Saved knowledge from Estrategia y análisis."
+    },
+    {
+      "id": "benchmark",
+      "label": "Benchmark del mercado",
+      "paths": [
+        "docs/benchmark.md"
+      ],
+      "color": "#38BDF8",
+      "staleDays": null,
+      "type": "markdown",
+      "short": "Benchmark del mercado",
+      "blurb": "Saved knowledge from Benchmark del mercado."
+    },
+    {
+      "id": "diseno",
+      "label": "Diseño y lanzamiento",
+      "paths": [
+        "docs/DESIGN.md",
+        "docs/kit-lanzamiento.md"
+      ],
+      "color": "#FB923C",
+      "staleDays": null,
+      "type": "markdown",
+      "short": "Diseño y lanzamiento",
+      "blurb": "Saved knowledge from Diseño y lanzamiento."
+    },
+    {
+      "id": "grafo",
+      "label": "Grafo graphify (wiki)",
+      "paths": [
+        "graphify-out/wiki",
+        "graphify-out/GRAPH_REPORT.md"
+      ],
+      "color": "#A78BFA",
+      "staleDays": null,
+      "type": "markdown",
+      "short": "Grafo graphify (wiki)",
+      "blurb": "Saved knowledge from Grafo graphify (wiki)."
+    }
+  ],
+  "version": 1,
+  "root": "..",
+  "maxNodes": 3000
+}

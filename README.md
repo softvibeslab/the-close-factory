@@ -41,3 +41,14 @@ NODE_PATH=$PW node tools/qa_capturas.cjs http://127.0.0.1:8917/ /tmp/qa   # capt
 - `deploy/` — vhost de nginx, script de publicación y bitácora.
 
 La conversión es el WhatsApp público de diagnóstico (+52 984 136 2816). Cada enlace lleva su origen y, si la visita trae `utm_*`, la campaña. No hay dependencias en producción ni datos de otros clientes.
+
+## Base de conocimiento
+
+- `graphify-out/`: grafo de Graphify con 229 nodos, 353 aristas y 10 comunidades. Abre `graph.html` en el navegador; el reporte está en `GRAPH_REPORT.md` y la wiki para agentes en `wiki/index.md`. `.graphifyignore` excluye los blueprints de Comfy. Para actualizarlo: `/graphify . --update` y luego `graphify export wiki`.
+- `cerebro/`: «Close Factory · Cerebro», un globo 3D local (plantilla `3d-brain` de AIS-OS). Reúne 28 notas en 4 categorías: estrategia y análisis, benchmark, diseño y lanzamiento, y la wiki de graphify. Requiere Node 22 o superior y no instala dependencias:
+
+  ```bash
+  cd cerebro && node serve.mjs   # http://127.0.0.1:4647 · Play demo, Cinema, arrastrar para girar
+  ```
+
+  La verificación y las capturas están en `cerebro/qa/VERIFICACION.md`.

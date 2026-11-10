@@ -1,0 +1,117 @@
+{
+  "/Users/rogergv/Documents/SoftvibesLab/SoftvibesSites/the-close-factory/main.js": {
+    "mtime": 1793332485.6638713,
+    "ast_hash": "cfc72cc995900b2a47fa6c03a9fdbd3d",
+    "semantic_hash": "cfc72cc995900b2a47fa6c03a9fdbd3d"
+  },
+  "/Users/rogergv/Documents/SoftvibesLab/SoftvibesSites/the-close-factory/calc.js": {
+    "mtime": 1793331981.6520798,
+    "ast_hash": "875985498ade9fffd3b37d293c3882bf",
+    "semantic_hash": "875985498ade9fffd3b37d293c3882bf"
+  },
+  "/Users/rogergv/Documents/SoftvibesLab/SoftvibesSites/the-close-factory/tools/incrustar_linea.py": {
+    "mtime": 1793332086.433321,
+    "ast_hash": "074dd49d5ac8b3975fcfc48753304b55",
+    "semantic_hash": "074dd49d5ac8b3975fcfc48753304b55"
+  },
+  "/Users/rogergv/Documents/SoftvibesLab/SoftvibesSites/the-close-factory/tools/gen_linea_svg.py": {
+    "mtime": 1793331937.3186355,
+    "ast_hash": "926dc29f269c503fd51de611a3570afa",
+    "semantic_hash": "926dc29f269c503fd51de611a3570afa"
+  },
+  "/Users/rogergv/Documents/SoftvibesLab/SoftvibesSites/the-close-factory/deploy/publicar.sh": {
+    "mtime": 1793332625.0058832,
+    "ast_hash": "839755c510e98fc36d880160cde77c37",
+    "semantic_hash": "839755c510e98fc36d880160cde77c37"
+  },
+  "/Users/rogergv/Documents/SoftvibesLab/SoftvibesSites/the-close-factory/tests/calc.test.mjs": {
+    "mtime": 1793331994.42568,
+    "ast_hash": "88a706c42fac802c6e32c3ff95475f2c",
+    "semantic_hash": "88a706c42fac802c6e32c3ff95475f2c"
+  },
+  "/Users/rogergv/Documents/SoftvibesLab/SoftvibesSites/the-close-factory/index.html": {
+    "mtime": 1793334519.017065,
+    "ast_hash": "7087c6f190ade6ee939cd335099728a1",
+    "semantic_hash": "7087c6f190ade6ee939cd335099728a1"
+  },
+  "/Users/rogergv/Documents/SoftvibesLab/SoftvibesSites/the-close-factory/README.md": {
+    "mtime": 1793334608.2534046,
+    "ast_hash": "2d39032b3b232dc627e89092b4e9749c",
+    "semantic_hash": "2d39032b3b232dc627e89092b4e9749c"
+  },
+  "/Users/rogergv/Documents/SoftvibesLab/SoftvibesSites/the-close-factory/comfy/comfy.yaml": {
+    "mtime": 1793331841.0415716,
+    "ast_hash": "0a449f177129121587fd0d66637a6571",
+    "semantic_hash": "0a449f177129121587fd0d66637a6571"
+  },
+  "/Users/rogergv/Documents/SoftvibesLab/SoftvibesSites/the-close-factory/docs/analisis.md": {
+    "mtime": 1793330786.0348606,
+    "ast_hash": "3e81a11ba49bb4bc6434a57f70d66ca4",
+    "semantic_hash": "3e81a11ba49bb4bc6434a57f70d66ca4"
+  },
+  "/Users/rogergv/Documents/SoftvibesLab/SoftvibesSites/the-close-factory/docs/plan-rediseno.md": {
+    "mtime": 1793334608.2540896,
+    "ast_hash": "c2b4ae3df298dad391ee046b40f60631",
+    "semantic_hash": "c2b4ae3df298dad391ee046b40f60631"
+  },
+  "/Users/rogergv/Documents/SoftvibesLab/SoftvibesSites/the-close-factory/docs/benchmark.md": {
+    "mtime": 1793331980.360999,
+    "ast_hash": "3602f56c0a8267c6c3429909c5733293",
+    "semantic_hash": "3602f56c0a8267c6c3429909c5733293"
+  },
+  "/Users/rogergv/Documents/SoftvibesLab/SoftvibesSites/the-close-factory/docs/kit-lanzamiento.md": {
+    "mtime": 1793334608.2537649,
+    "ast_hash": "ed277264e007072b3178c82a591946d0",
+    "semantic_hash": "ed277264e007072b3178c82a591946d0"
+  },
+  "/Users/rogergv/Documents/SoftvibesLab/SoftvibesSites/the-close-factory/docs/DESIGN.md": {
+    "mtime": 1793331963.8195775,
+    "ast_hash": "50ab47c0134775c1975aa01d38f165e0",
+    "semantic_hash": "50ab47c0134775c1975aa01d38f165e0"
+  },
+  "/Users/rogergv/Documents/SoftvibesLab/SoftvibesSites/the-close-factory/docs/inventario-previo.md": {
+    "mtime": 1793329033.2031438,
+    "ast_hash": "ac53032843703e5eb969ba8ce520fd41",
+    "semantic_hash": "ac53032843703e5eb969ba8ce520fd41"
+  },
+  "/Users/rogergv/Documents/SoftvibesLab/SoftvibesSites/the-close-factory/analisis/index.html": {
+    "mtime": 1793334608.2529876,
+    "ast_hash": "a0e4b8e80e7834439c6bcf8316742ed3",
+    "semantic_hash": "a0e4b8e80e7834439c6bcf8316742ed3"
+  },
+  "/Users/rogergv/Documents/SoftvibesLab/SoftvibesSites/the-close-factory/favicon.svg": {
+    "mtime": 1793332630.4848602,
+    "ast_hash": "1197e3138a8c0b050a4481f543bf8d2f",
+    "semantic_hash": "1197e3138a8c0b050a4481f543bf8d2f"
+  },
+  "/Users/rogergv/Documents/SoftvibesLab/SoftvibesSites/the-close-factory/svg/linea.svg": {
+    "mtime": 1793331937.3415537,
+    "ast_hash": "f92616812f0715e5a865776f53e07e67",
+    "semantic_hash": "f92616812f0715e5a865776f53e07e67"
+  },
+  "/Users/rogergv/Documents/SoftvibesLab/SoftvibesSites/the-close-factory/img/grupo-zamna.png": {
+    "mtime": 1793334482.3142326,
+    "ast_hash": "92229cf3a3059f9b8d702fd9fbc7232e",
+    "semantic_hash": "92229cf3a3059f9b8d702fd9fbc7232e"
+  },
+  "/Users/rogergv/Documents/SoftvibesLab/SoftvibesSites/the-close-factory/img/og.jpg": {
+    "mtime": 1793332528.7352753,
+    "ast_hash": "3d87c065173454acfea747c908d2224b",
+    "semantic_hash": "3d87c065173454acfea747c908d2224b"
+  },
+  "/Users/rogergv/Documents/SoftvibesLab/SoftvibesSites/the-close-factory/img/zamna-prana.jpg": {
+    "mtime": 1793334482.2894623,
+    "ast_hash": "48af5e75702a21e6921bac717e202cd9",
+    "semantic_hash": "48af5e75702a21e6921bac717e202cd9"
+  },
+  "/Users/rogergv/Documents/SoftvibesLab/SoftvibesSites/the-close-factory/analisis/img/antes.jpg": {
+    "mtime": 1793332549.8478787,
+    "ast_hash": "14d75d65fdd1d199e97c05c709f059bd",
+    "semantic_hash": "14d75d65fdd1d199e97c05c709f059bd"
+  },
+  "/Users/rogergv/Documents/SoftvibesLab/SoftvibesSites/the-close-factory/analisis/img/ahora.jpg": {
+    "mtime": 1793332549.8868237,
+    "ast_hash": "23fae82d419f67efe4747cbf3a796375",
+    "semantic_hash": "23fae82d419f67efe4747cbf3a796375"
+  }
+}
