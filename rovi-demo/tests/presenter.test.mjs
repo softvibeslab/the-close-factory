@@ -1,0 +1,27 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {existsSync} from 'node:fs';
+import {pathToFileURL} from 'node:url';
+const path=new URL('../public/presenter.mjs', import.meta.url).pathname;
+test('guidance follows persisted scenario and never infers completion from another lead',async()=>{
+ assert.ok(existsSync(path),'Falta guía basada en estado CRM');
+ const {presenterStep}=await import(pathToFileURL(path));
+ const scenario={lead_id:'mariana',broker_a_id:'broker-a'};
+ const state={scenario,leads:[{id:'other',status:'presentacion',assigned_broker_id:'broker-a'}],events:[]};
+ assert.equal(presenterStep(state,'broker_b').key,'not-visible');
+ state.leads.push({id:'mariana',status:'nuevo'});
+ assert.equal(presenterStep(state,'manager').key,'qualify');
+ const lead=state.leads[1];lead.status='calificacion';lead.custom_fields_data={finalidad:'Vivir'};lead.budget_mxn=2800000;
+ assert.equal(presenterStep(state,'manager').key,'assign');
+ assert.equal(presenterStep(state,'broker_a').key,'manager');
+ lead.assigned_broker_id='broker-a';
+ assert.equal(presenterStep(state,'manager').key,'visit');
+ state.events=[{lead_id:'other',event_type:'visita'}];
+ assert.equal(presenterStep(state,'manager').key,'visit');
+ state.events.push({lead_id:'mariana',event_type:'visita'});
+ assert.equal(presenterStep(state,'broker_a').key,'advance');
+ lead.status='presentacion';
+ assert.equal(presenterStep(state,'broker_a').key,'review');
+ assert.equal(presenterStep(state,'manager').key,'ready');
+ assert.equal(presenterStep(null,'manager').key,'unavailable');
+});

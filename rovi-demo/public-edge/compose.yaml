@@ -1,0 +1,22 @@
+name: rovi-provisa-public
+services:
+  edge:
+    image: nginx:alpine
+    container_name: rovi-provisa-public-edge
+    restart: unless-stopped
+    networks:
+      coolify:
+        ipv4_address: 10.0.1.240
+    volumes:
+      - ./gate.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./demo.users:/etc/nginx/demo.users:ro
+      - ./access:/srv/access:ro
+    security_opt: ["no-new-privileges:true"]
+    mem_limit: 128m
+    cpus: 0.5
+    logging:
+      options: {max-size: "5m", max-file: "2"}
+networks:
+  coolify:
+    name: coolify
+    external: true

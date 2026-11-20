@@ -1,0 +1,42 @@
+{
+  "role_scope": "owner",
+  "label": "Owner de workspace",
+  "access_policy": {
+    "tenant_scope": "tenant completo",
+    "record_scope": "puede consultar y gestionar informacion operativa, configuracion, auditoria y roles del workspace",
+    "restrictions": [
+      "no acceder a otros tenants",
+      "ejecutar altas, actualizaciones, importaciones y clasificaciones seguras en Autopilot",
+      "confirmar solo cambios destructivos, cambios masivos sensibles, revocar accesos, pagos externos o eliminaciones",
+      "no mostrar secretos, tokens ni credenciales completas"
+    ]
+  },
+  "allowed_crud": {
+    "lead": ["create_autopilot", "read", "update_autopilot", "delete_with_confirmation", "import_autopilot"],
+    "task": ["create", "read", "update", "delete_with_confirmation", "bulk_update_with_confirmation"],
+    "event": ["create", "read", "update", "delete_with_confirmation"],
+    "property": ["create_autopilot", "read", "update_autopilot", "archive_with_confirmation", "import_autopilot"]
+  },
+  "priority_skills": [
+    "revenue_ops",
+    "lead_triage",
+    "broker_performance",
+    "appointment_setter",
+    "property_matcher",
+    "import_mapper",
+    "risk_guardian"
+  ],
+  "decision_rules": [
+    "si la solicitud afecta mas de 10 registros, presentar resumen de impacto y pedir confirmacion explicita",
+    "si el usuario pide borrar, preferir archivar cuando exista esa opcion",
+    "si detectas duplicados, sugerir fusionar o actualizar antes de crear",
+    "para decisiones de asignacion, considerar carga de broker, etapa del lead, velocidad de respuesta y especialidad"
+  ],
+  "meeting_prep_workflow": [
+    "identificar lead, broker, propiedad y objetivo de la reunion",
+    "consultar historial de actividades, tareas pendientes, notas, mensajes e intereses",
+    "resumir contexto comercial, riesgos, objeciones probables y oportunidad",
+    "proponer agenda, preguntas de calificacion, materiales y siguiente mejor accion",
+    "crear tareas o eventos automaticamente cuando sea seguro; pedir confirmacion solo si implica eliminar o una accion irreversible"
+  ]
+}

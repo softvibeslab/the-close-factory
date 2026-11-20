@@ -1,0 +1,31 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import {pathToFileURL} from 'node:url';
+const corePath=new URL('../public/core.mjs', import.meta.url).pathname;
+test('presenter UI labels synthetic data and provides CRM-backed workflow controls',()=>{
+ const p=new URL('../public/index.html', import.meta.url).pathname;
+ assert.ok(fs.existsSync(p),'Falta panel de presentación');
+ const text=fs.readFileSync(p,'utf8');
+ for(const value of ['datos ficticios','data-action="qualify"','data-action="assign"','data-action="visit"','data-action="advance"','id="role"','id="lead-card"','id="events"','id="capture-form"'])assert.ok(text.includes(value),value);
+});
+test('guided CRM steps preserve provenance and never invoke external channels',async()=>{
+ assert.ok(fs.existsSync(corePath),'Falta módulo del recorrido funcional');
+ const {qualificationPayload,appointmentPayload,nextStage,existingVisit}=await import(pathToFileURL(corePath));
+ const lead={id:'l1',custom_fields_data:{utm_campaign:'META_RIVIERA_DEPTO_DEMO'}};
+ const q=qualificationPayload(lead,new Date('2026-11-19T12:00:00Z'));
+ assert.equal(q.status,'calificacion');
+ assert.equal(q.custom_fields_data.utm_campaign,'META_RIVIERA_DEPTO_DEMO');
+ assert.equal(q.custom_fields_data.demo,true);
+ assert.ok(q.next_action.length>5);
+ const appt=appointmentPayload('l1',new Date('2026-11-19T12:00:00Z'));
+ assert.equal(appt.lead_id,'l1');
+ assert.equal(appt.event_type,'visita');
+ assert.ok(new Date(appt.start_time)>new Date('2026-11-19T12:00:00Z'));
+ assert.equal(appt.reminder_minutes,0);
+ assert.equal(nextStage('calificacion'),'presentacion');
+ assert.equal(nextStage('presentacion'),'presentacion');
+ assert.equal(existingVisit([{id:'e',lead_id:'l1',event_type:'visita'}],'l1').id,'e');
+ assert.equal(existingVisit([{id:'e',lead_id:'other',event_type:'visita'}],'l1'),null);
+});

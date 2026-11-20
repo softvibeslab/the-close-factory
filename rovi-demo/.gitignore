@@ -1,0 +1,30 @@
+# Local secrets and generated deployment state
+.env
+.env.*
+!.env.example
+demo.env
+gate.conf
+demo.users
+*-access.txt
+access-link.txt
+settings.json
+*.key
+*.pem
+*.sqlite*
+*.db
+*.blob
+# Dependencies, builds and execution artifacts
+node_modules
+node_modules/
+build/
+__pycache__/
+*.pyc
+.pytest_cache/
+uploads/
+logs/
+evidence/
+backups/
+*.webm
+*.mp4
+*.zip
+*.tar.gz

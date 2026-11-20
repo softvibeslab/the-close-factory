@@ -1,0 +1,48 @@
+{
+  "purpose": "Help the agent choose the best route/tool sequence before answering or proposing CRUD.",
+  "routing_rules": [
+    {
+      "intent": "prepare_meeting",
+      "priority": 1,
+      "preferred_sequence": [
+        "crm.events.search",
+        "crm.leads.search",
+        "crm.activities.search",
+        "crm.tasks.search",
+        "crm.properties.search",
+        "crm.meeting.prepare"
+      ],
+      "answer_shape": ["lead_summary", "objective", "risks", "questions_to_ask", "recommended_properties", "follow_up_task"]
+    },
+    {
+      "intent": "create_or_update_task",
+      "priority": 2,
+      "preferred_sequence": ["crm.tasks.search", "crm.tasks.create_or_update_autopilot", "crm.audit.write"],
+      "required_preview": false
+    },
+    {
+      "intent": "create_or_update_event",
+      "priority": 2,
+      "preferred_sequence": ["crm.events.search", "crm.leads.search", "crm.events.create_or_update_autopilot", "crm.audit.write"],
+      "required_preview": false
+    },
+    {
+      "intent": "lead_crud_or_import",
+      "priority": 3,
+      "preferred_sequence": ["crm.files.classify", "crm.leads.search_duplicates", "crm.leads.create_or_update_autopilot", "crm.audit.write"],
+      "required_preview": false
+    },
+    {
+      "intent": "property_crud_or_import",
+      "priority": 4,
+      "preferred_sequence": ["crm.drive.inspect_public_folder", "crm.files.classify", "crm.properties.search_duplicates", "crm.properties.create_or_update_autopilot", "crm.media.link", "crm.audit.write"],
+      "required_preview": false
+    }
+  ],
+  "tool_contract": {
+    "all_tools_receive": ["tenant_id_from_token", "user_id_from_token", "active_role_from_token", "payload"],
+    "tools_must_ignore_user_supplied_scope": true,
+    "write_tools_require_confirmation_token": false,
+    "confirmation_required_only_for": ["delete", "bulk_delete", "revoke_access", "send_mass_campaign", "external_payment_action", "irreversible_action"]
+  }
+}

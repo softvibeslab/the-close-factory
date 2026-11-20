@@ -1,0 +1,75 @@
+name: rovi-provisa-demo
+services:
+  mongo:
+    image: mongo:7
+    command: ["mongod", "--bind_ip_all", "--quiet"]
+    restart: unless-stopped
+    networks: [demo]
+    volumes: ["demo_mongo:/data/db"]
+    mem_limit: 768m
+    cpus: 1.0
+    logging:
+      options: {max-size: "5m", max-file: "2"}
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+  backend:
+    image: closefactory-rovi-backend:local
+    build:
+      context: ./source/backend
+    command: ["uvicorn", "demo_app:app", "--host", "0.0.0.0", "--port", "8000", "--log-level", "warning"]
+    working_dir: /app
+    restart: unless-stopped
+    networks: [demo]
+    env_file: [demo.env]
+    environment:
+      PROVISA_DEMO: "1"
+      DB_NAME: provisa_demo
+      MONGO_URL: mongodb://mongo:27017
+      CORS_ORIGINS: http://127.0.0.1:9130,http://localhost:9130
+      FRONTEND_URL: http://127.0.0.1:9130
+      APP_BASE_URL: http://127.0.0.1:9130
+      USE_MOCK_SCRAPING: "false"
+      JWT_EXPIRATION_HOURS: "8"
+      PYTHONDONTWRITEBYTECODE: "1"
+      HOME: /tmp
+    volumes:
+      - ./source/backend:/app
+      - ./runtime/demo_app.py:/app/demo_app.py:ro
+      - ./runtime/demo_scenario.py:/app/demo_scenario.py:ro
+      - demo_uploads:/app/uploads
+    depends_on:
+      mongo: {condition: service_healthy}
+    mem_limit: 1536m
+    cpus: 2.0
+    security_opt: ["no-new-privileges:true"]
+    logging:
+      options: {max-size: "5m", max-file: "2"}
+  frontend:
+    image: nginx:alpine
+    restart: unless-stopped
+    networks:
+      demo:
+        ipv4_address: 10.0.11.4
+    volumes:
+      - ./source/frontend/build:/usr/share/nginx/html:ro
+      - ./public:/srv/demo:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on: [backend]
+    mem_limit: 256m
+    cpus: 1.0
+    security_opt: ["no-new-privileges:true"]
+    logging:
+      options: {max-size: "5m", max-file: "2"}
+networks:
+  demo:
+    internal: true
+    ipam:
+      config:
+        - subnet: 10.0.11.0/24
+          gateway: 10.0.11.1
+volumes:
+  demo_mongo:
+  demo_uploads:

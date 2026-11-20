@@ -1,0 +1,52 @@
+map_hash_bucket_size 128;
+map $cookie_rovi_demo_access $provisa_authenticated {
+    default 0;
+    "__ACCESS_COOKIE__" 1;
+}
+limit_req_zone $binary_remote_addr zone=rovi_demo_login:1m rate=10r/m;
+limit_req_zone $binary_remote_addr zone=rovi_demo_requests:5m rate=20r/s;
+server {
+    listen 8080;
+    server_name demo.rovicrm.com;
+    absolute_redirect off;
+    root /srv/access;
+    client_max_body_size 2m;
+    set_real_ip_from 10.0.1.5;
+    real_ip_header X-Forwarded-For;
+    real_ip_recursive on;
+    add_header X-Content-Type-Options nosniff always;
+    add_header Referrer-Policy no-referrer always;
+    add_header X-Frame-Options SAMEORIGIN always;
+    add_header X-Robots-Tag "noindex, nofollow" always;
+    limit_req_status 429;
+    location = /access {
+        limit_req zone=rovi_demo_login burst=10 nodelay;
+        auth_basic "ROVI demo privada";
+        auth_basic_user_file /etc/nginx/demo.users;
+        default_type text/html;
+        try_files /access.html =404;
+        add_header Set-Cookie "rovi_demo_access=__ACCESS_COOKIE__; Path=/; Max-Age=28800; HttpOnly; Secure; SameSite=Lax";
+        add_header Cache-Control "no-store" always;
+        add_header Referrer-Policy no-referrer always;
+        add_header X-Frame-Options SAMEORIGIN always;
+        add_header X-Content-Type-Options nosniff always;
+    }
+    location / {
+        if ($provisa_authenticated = 0) { return 303 /access; }
+        limit_req zone=rovi_demo_requests burst=100 nodelay;
+        proxy_pass http://10.0.1.1:9132;
+        proxy_http_version 1.1;
+        proxy_set_header Host $http_host;
+        proxy_set_header Authorization $http_authorization;
+        proxy_set_header Cookie "";
+        proxy_set_header X-Forwarded-Proto https;
+        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_read_timeout 90s;
+        proxy_hide_header Access-Control-Allow-Origin;
+        add_header Cache-Control "no-store" always;
+        add_header X-Content-Type-Options nosniff always;
+        add_header Referrer-Policy no-referrer always;
+        add_header X-Frame-Options SAMEORIGIN always;
+        add_header X-Robots-Tag "noindex, nofollow" always;
+    }
+}

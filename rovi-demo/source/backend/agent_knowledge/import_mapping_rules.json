@@ -1,0 +1,60 @@
+{
+  "purpose": "Classify user-provided files, links, screenshots and text into CRM import previews.",
+  "input_classification": {
+    "plain_text": ["lead_note", "task_request", "event_request", "property_description", "conversation_summary"],
+    "contact_card": ["lead_candidate", "broker_contact"],
+    "screenshot": ["lead_data", "property_data", "whatsapp_conversation", "calendar_details", "payment_or_contract_context"],
+    "image": ["property_media", "document_image", "conversation_screenshot"],
+    "video": ["property_tour", "meeting_recording", "property_context"],
+    "pdf": ["property_brochure", "contract_context", "price_list", "lead_document"],
+    "csv_xlsx": ["lead_import", "property_import", "task_import", "event_import"],
+    "google_drive_link": ["property_folder", "media_folder", "document_repository", "mixed_property_assets"]
+  },
+  "mapping_strategy": [
+    "Classify input type and likely CRM entity.",
+    "Extract candidate fields with confidence.",
+    "Normalize phones, emails, dates, prices, currencies and locations.",
+    "Search for duplicates using entity search_order.",
+    "Produce an internal preview with mapped fields, missing fields, duplicate risk and proposed action.",
+    "Execute safe create, update, import, classify, enrich and media-link actions without confirmation when confidence and permissions are sufficient.",
+    "Ask for explicit confirmation only before delete, bulk delete, revoking access, mass external campaigns, payments or irreversible actions."
+  ],
+  "google_drive_public_folder_strategy": {
+    "expected_property_structure": [
+      "folder name may contain development, unit, tower, location or property title",
+      "images and videos are media assets",
+      "PDFs may contain price, floor plans, amenities and payment plans",
+      "spreadsheets may contain inventory, prices or availability",
+      "subfolders may separate renders, planos, amenidades, contratos, precios"
+    ],
+    "extraction_priorities": [
+      "property title",
+      "location",
+      "price and currency",
+      "operation type",
+      "property type",
+      "bedrooms and bathrooms",
+      "m2 construction and land",
+      "amenities",
+      "media URLs",
+      "availability",
+      "source drive URL"
+    ],
+    "guardrail": "If the public link cannot be read by backend, ask the user to upload files or share a public folder/file link.",
+    "rovi_example_structure": {
+      "root_folder": "DISTRITO XCALACOCO",
+      "presentation_folder_or_file": "1. PRESENTACIÓN",
+      "availability_folder": "2. PRECIOS Y DISPONIBILIDAD",
+      "availability_pdf": "Disponibilidad - Distrito Xcalacoco Beach Fase 2.pdf",
+      "renders_folder": "3. RENDERS",
+      "render_count_example": 29,
+      "recommended_mapping": [
+        "root folder -> property/development title",
+        "presentation -> commercial brochure/document",
+        "precios y disponibilidad -> inventory, price list and availability source",
+        "renders -> Media Hub gallery linked to property",
+        "PDF -> OCR/text extraction for units, prices, availability, amenities and payment terms"
+      ]
+    }
+  }
+}

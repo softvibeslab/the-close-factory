@@ -1,0 +1,17 @@
+[Unit]
+Description=Loopback relay to isolated PROVISA frontend
+After=docker.service
+Requires=docker.service
+
+[Service]
+ExecStart=/usr/lib/systemd/systemd-socket-proxyd --exit-idle-time=60s 10.0.11.4:80
+DynamicUser=yes
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+RestrictAddressFamilies=AF_INET AF_UNIX
+CapabilityBoundingSet=
+MemoryMax=64M
+TasksMax=16
